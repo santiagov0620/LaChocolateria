@@ -187,7 +187,7 @@ body.menu-open .overlay__grid{opacity:1;transition:opacity .4s .4s}
 .overlay__links a:hover{color:var(--accent);padding-left:1.5rem}
 .overlay__links a:hover span{transform:translateX(.4rem)}
 
-.overlay__aside{align-self:end;padding-bottom:1rem}
+.overlay__aside{align-self:center;padding-bottom:0}
 .overlay__eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--caramel);margin-bottom:.7rem}
 .overlay__addr{font-family:var(--serif);font-size:1.15rem;line-height:1.45;margin-bottom:2rem;color:var(--beige)}

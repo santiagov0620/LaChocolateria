@@ -15,8 +15,11 @@ El sitio funciona con **video** (los reels de Instagram) + el **logo** + unos *p
 | `v1.mp4` | Ambiente de cafetería (café) | Especialidades · *Café* + collage + caja |
 | `v4.mp4` | Choux (pastelería) | Especialidades · *Pastelería* + collage + caja |
 | `v6.mp4` | Chocolate caliente | Especialidades · *Chocolate caliente* + collage + caja |
-| `v3.mp4` | Torta red velvet | **Catering** + collage + caja |
-| `v7.mp4` | Torta rosada decorada (con logo) | **Tortas** |
+| `v3.mp4` | Vasos/bolsa de marca (recortado) | **Catering** + collage + caja |
+| `v8.mp4` | Fresas con chocolate | Especialidades · *Fresas con chocolate* |
+| `v9.mp4` | Torta decorada con cinta | **Tortas** |
+| `local.mp4` | Fachada / letrero (recorte de v6) | **Visítanos** (Nuestra casa) |
+| `interior.mp4` | Vitrina de bombones (recorte de v6) | Collage Instagram |
 
 **Para cambiar un video:** reemplaza el archivo en `assets/video/` con el mismo nombre **y** regenera su poster (abajo). No hay que tocar el código.
 
