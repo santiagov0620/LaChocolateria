@@ -139,6 +139,9 @@
       return;
     }
     gsap.set([...lines, ...masks], { yPercent: 110, opacity: 0 });
+    // cinematic letterbox open of the hero video
+    gsap.fromTo('.hero__media', { clipPath: 'inset(46% 0 46% 0)' },
+      { clipPath: 'inset(0% 0 0% 0)', duration: 1.5, ease: 'expo.inOut' });
     const tl = gsap.timeline();
     tl.to(masks.filter((m) => m.closest('.hero__eyebrow')), { yPercent: 0, opacity: 1, duration: 1, ease: 'expo.out' }, 0)
       .to(lines, { yPercent: 0, opacity: 1, duration: 1.2, ease: 'expo.out', stagger: 0.09 }, 0.1)
@@ -159,7 +162,7 @@
   function initReveals() {
     const targets = $$([
       '.manifesto__foot', '.esp__head', '.tortas__content > *', '.catering__inner > *',
-      '.ig__head > *', '.visita__head > *', '.visita__grid', '.visita__map',
+      '.ig__head > *', '.visita__head > *', '.visita__grid',
       '.footer__top', '.footer__cols', '.caja__intro'
     ].join(','));
 
@@ -176,6 +179,49 @@
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
     targets.forEach((el) => io.observe(el));
+  }
+
+  /* ---------------------------------------------------------
+     5b. CINEMATIC MEDIA REVEALS (clip-path wipe + scale)
+  --------------------------------------------------------- */
+  function initCinematicReveals() {
+    const targets = $$('.tortas__media, .catering__media, .ig__item, .visita__storefront, .visita__map');
+    // Progressive enhancement: default media is fully visible; only clip when
+    // motion is allowed and IO exists, then reveal on enter.
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    targets.forEach((el) => el.classList.add('reveal-media'));
+    const reveal = (el) => el.classList.add('is-revealed');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach((el) => io.observe(el));
+
+    // Robustness: never leave media clipped if IO is throttled (hidden/headless
+    // tab). Reveal anything already on screen now + on first visibility, and a
+    // last-resort timer reveals the rest.
+    const sweep = () => targets.forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) { reveal(el); io.unobserve(el); }
+    });
+    window.addEventListener('load', sweep);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) sweep(); });
+    setTimeout(() => targets.forEach(reveal), 6000);
+  }
+
+  /* ---------------------------------------------------------
+     5c. SCROLL PROGRESS BAR
+  --------------------------------------------------------- */
+  function initProgress() {
+    const bar = $('#progress');
+    if (!bar || reduceMotion) return;
+    const update = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+      bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    };
+    // native scroll fires even while Lenis drives it, so this stays in sync
+    window.addEventListener('scroll', update, { passive: true });
+    if (lenis) lenis.on('scroll', update);
+    update();
   }
 
   /* ---------------------------------------------------------
@@ -245,6 +291,7 @@
     gsap.set(cells, { scale: 0.6, y: 20, opacity: 0 });
     gsap.set(titleLines, { yPercent: 110, opacity: 0 });
 
+    const box = $('#cajaBox');
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sec,
@@ -253,7 +300,8 @@
         pin: '.caja__pin',
         scrub: 1,
         invalidateOnRefresh: true,
-        anticipatePin: 1
+        anticipatePin: 1,
+        onUpdate: (self) => { if (box) box.classList.toggle('is-open', self.progress > 0.42); }
       }
     });
 
@@ -384,10 +432,12 @@
     initCursor();
     initMagnetic();
     initNav();
+    initProgress();
 
     runPreloader(() => {
       revealHero();
       initReveals();
+      initCinematicReveals();
       initManifesto();
       initHorizontal();
       initCaja();

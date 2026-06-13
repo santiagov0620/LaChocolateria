@@ -5,8 +5,8 @@
 
 /* ---------- Design tokens ---------- */
 :root{
-  --espresso:#1C110B;
-  --cacao:#2E1A10;
+  --espresso:#160D07;
+  --cacao:#291710;
   --cocoa:#4A2C1A;
   --caramel:#C68A4E;
   --caramel-deep:#B0733A;
@@ -14,8 +14,8 @@
   --beige:#E4D2BC;
   --cherry:#8E3B33;
   --gold:#C9A24B;
-  --accent:#E0601C;       /* brand orange (from the logo) */
-  --accent-soft:#EA7A3A;
+  --accent:#EA631C;       /* brand orange (from the logo), sharpened for contrast */
+  --accent-soft:#F0843E;
 
   --bg:var(--espresso);
   --fg:var(--cream);
@@ -521,6 +521,40 @@ body.menu-open .overlay__grid{opacity:1;transition:opacity .4s .4s}
 [data-reveal-delay="3"]{transition-delay:.24s}
 
 /* =========================================================
+   AWARD PASS — cinematic reveals, progress, scrollbar, polish
+   ========================================================= */
+
+/* Scroll progress bar */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:850;transform:scaleX(0);
+  transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--accent-soft));
+  pointer-events:none;mix-blend-mode:screen}
+
+/* Custom scrollbar (desktop) */
+@media (hover:hover) and (pointer:fine){
+  *{scrollbar-width:thin;scrollbar-color:var(--cocoa) transparent}
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:var(--espresso)}
+  ::-webkit-scrollbar-thumb{background:var(--cocoa);border-radius:100px;border:2px solid var(--espresso)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--caramel-deep)}
+}
+
+/* Cinematic clip-path media reveal (JS adds .reveal-media, then .is-revealed) */
+.reveal-media{clip-path:inset(0 0 100% 0);will-change:clip-path}
+.reveal-media.is-revealed{clip-path:inset(0 0 0% 0);
+  transition:clip-path 1.15s cubic-bezier(.16,1,.3,1)}
+.reveal-media :is(img,video,.media__video,iframe){transform:scale(1.28);
+  transition:transform 1.5s cubic-bezier(.16,1,.3,1)}
+.reveal-media.is-revealed :is(img,video,.media__video,iframe){transform:scale(1)}
+
+/* "La Caja" — foil shimmer on the lid + warm glow as it opens */
+.caja__lid-foil{background-size:220% 220%;animation:foilShimmer 7s ease-in-out infinite}
+@keyframes foilShimmer{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+.caja__box::after{content:"";position:absolute;inset:-12% -6%;z-index:0;pointer-events:none;
+  background:radial-gradient(60% 55% at 50% 52%, rgba(234,99,28,.22), transparent 70%);
+  opacity:0;transition:opacity 1.2s ease}
+.caja__box.is-open::after{opacity:1}
+
+/* =========================================================
    REDUCED MOTION
    ========================================================= */
 @media (prefers-reduced-motion:reduce){
@@ -534,6 +568,11 @@ body.menu-open .overlay__grid{opacity:1;transition:opacity .4s .4s}
   [data-reveal]{opacity:1;transform:none}
   .reveal-words .w{opacity:1}
   .marquee__track{animation:none}
+  .reveal-media{clip-path:none!important}
+  .reveal-media :is(img,video,.media__video,iframe){transform:none!important}
+  .caja__lid-foil{animation:none}
+  .caja__box::after{opacity:0!important}
+  .progress{display:none}
   .cursor{display:none!important}
   body.cursor-ready{cursor:auto}
 }
