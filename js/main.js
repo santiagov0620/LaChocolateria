@@ -203,10 +203,9 @@
     const track = $('#espTrack');
     if (!pin || !track) return;
     if (reduceMotion || !hasST || isTouch) {
-      // Native horizontal scroll fallback
-      track.style.overflowX = 'auto';
-      track.style.scrollSnapType = 'x mandatory';
-      $$('.esp__panel', track).forEach((p) => (p.style.scrollSnapAlign = 'center'));
+      // Native horizontal swipe fallback (the .is-native class turns the
+      // max-content track into a real scroll container — see CSS).
+      track.classList.add('is-native');
       const hint = $('.esp__hint'); if (hint) hint.textContent = 'Desliza →';
       return;
     }
