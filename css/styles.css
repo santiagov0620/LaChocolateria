@@ -307,7 +307,7 @@ body.menu-open .overlay__grid{opacity:1;transition:opacity .4s .4s}
 /* touch / reduced-motion: real horizontal swipe (overrides width:max-content so it actually scrolls) */
 .esp__track.is-native{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;
   -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);
-  scrollbar-width:none;touch-action:pan-x}
+  scrollbar-width:none}
 .esp__track.is-native::-webkit-scrollbar{display:none}
 .esp__track.is-native .esp__panel{scroll-snap-align:center}
 .esp__count{position:absolute;top:-2.2rem;left:0;font-family:var(--mono);font-size:.7rem;
