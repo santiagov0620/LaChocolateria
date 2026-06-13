@@ -14,8 +14,8 @@
   --beige:#E4D2BC;
   --cherry:#8E3B33;
   --gold:#C9A24B;
-  --accent:#EA631C;       /* brand orange (from the logo), sharpened for contrast */
-  --accent-soft:#F0843E;
+  --accent:#C9A24B;       /* refined gold (matches the chocolate-box foil) — replaces orange */
+  --accent-soft:#DCC086;
 
   --bg:var(--espresso);
   --fg:var(--cream);
@@ -550,7 +550,7 @@ body.menu-open .overlay__grid{opacity:1;transition:opacity .4s .4s}
 .caja__lid-foil{background-size:220% 220%;animation:foilShimmer 7s ease-in-out infinite}
 @keyframes foilShimmer{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
 .caja__box::after{content:"";position:absolute;inset:-12% -6%;z-index:0;pointer-events:none;
-  background:radial-gradient(60% 55% at 50% 52%, rgba(234,99,28,.22), transparent 70%);
+  background:radial-gradient(60% 55% at 50% 52%, rgba(201,162,75,.22), transparent 70%);
   opacity:0;transition:opacity 1.2s ease}
 .caja__box.is-open::after{opacity:1}
 
