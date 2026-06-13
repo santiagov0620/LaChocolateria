@@ -73,7 +73,9 @@
   let lenis = null;
   function initLenis() {
     if (reduceMotion || !hasLenis) return;
-    lenis = new Lenis({ duration: 1.15, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    // lerp-based smoothing reads silkier than duration-based for continuous
+    // wheel scrolling; 0.08 gives a long, even glide without feeling detached.
+    lenis = new Lenis({ lerp: 0.08, smoothWheel: true, wheelMultiplier: 0.95, syncTouch: false });
     if (hasST) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -151,7 +153,7 @@
     if (hasST) {
       gsap.to('.hero__media video, .hero__media img', {
         yPercent: 12, scale: 1.12, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
       });
     }
   }
@@ -298,7 +300,7 @@
         start: 'top top',
         end: '+=160%',
         pin: '.caja__pin',
-        scrub: 1,
+        scrub: 1.2,
         invalidateOnRefresh: true,
         anticipatePin: 1,
         onUpdate: (self) => { if (box) box.classList.toggle('is-open', self.progress > 0.42); }
