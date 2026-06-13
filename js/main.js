@@ -49,18 +49,9 @@
       return;
     }
 
-    // Instagram tiles: do NOT autoplay all at once (5 simultaneous decodes is
-    // the heaviest cost on the page). Play on hover (desktop); poster otherwise.
-    const igVids = $$('.ig__item video.media__video');
-    const igSet = new Set(igVids);
-    igVids.forEach((v) => {
-      const fig = v.closest('.media');
-      fig.addEventListener('mouseenter', () => { v.preload = 'auto'; v.play().catch(() => {}); });
-      fig.addEventListener('mouseleave', () => { try { v.pause(); } catch (e) {} });
-    });
-
-    // Everything else: play only while on screen, pause when it leaves.
-    const vids = $$('video.media__video[data-lazy]').filter((v) => !igSet.has(v));
+    // Play any media video only while it's on screen; pause when it leaves.
+    // (IG clips are now light native-res short loops, so this is cheap.)
+    const vids = $$('video.media__video[data-lazy]');
     if (!('IntersectionObserver' in window)) {
       vids.forEach((v) => v.play().catch(() => {}));
       return;
