@@ -48,20 +48,28 @@
       $$('video.media__video').forEach((v) => { v.removeAttribute('autoplay'); v.autoplay = false; try { v.pause(); } catch (e) {} });
       return;
     }
-    const vids = $$('video.media__video[data-lazy]');
+
+    // Instagram tiles: do NOT autoplay all at once (5 simultaneous decodes is
+    // the heaviest cost on the page). Play on hover (desktop); poster otherwise.
+    const igVids = $$('.ig__item video.media__video');
+    const igSet = new Set(igVids);
+    igVids.forEach((v) => {
+      const fig = v.closest('.media');
+      fig.addEventListener('mouseenter', () => { v.preload = 'auto'; v.play().catch(() => {}); });
+      fig.addEventListener('mouseleave', () => { try { v.pause(); } catch (e) {} });
+    });
+
+    // Everything else: play only while on screen, pause when it leaves.
+    const vids = $$('video.media__video[data-lazy]').filter((v) => !igSet.has(v));
     if (!('IntersectionObserver' in window)) {
-      // No IO: just try to play them (still cheap because muted)
-      if (!reduceMotion) vids.forEach((v) => v.play().catch(() => {}));
+      vids.forEach((v) => v.play().catch(() => {}));
       return;
     }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         const v = e.target;
-        if (e.isIntersecting) {
-          if (!reduceMotion) { v.preload = 'auto'; v.play().catch(() => {}); }
-        } else if (!v.paused) {
-          v.pause();
-        }
+        if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); }
+        else if (!v.paused) { v.pause(); }
       });
     }, { threshold: 0.25 });
     vids.forEach((v) => io.observe(v));
@@ -73,9 +81,9 @@
   let lenis = null;
   function initLenis() {
     if (reduceMotion || !hasLenis) return;
-    // lerp-based smoothing reads silkier than duration-based for continuous
-    // wheel scrolling; 0.08 gives a long, even glide without feeling detached.
-    lenis = new Lenis({ lerp: 0.08, smoothWheel: true, wheelMultiplier: 0.95, syncTouch: false });
+    // lerp-based smoothing reads silkier than duration-based; 0.1 stays
+    // responsive (0.08 felt floaty / laggy under heavy paint).
+    lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, syncTouch: false });
     if (hasST) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -282,18 +290,34 @@
     const lid = $('#cajaLid');
     const cells = $$('.caja .cell').sort((a, b) => (+a.style.getPropertyValue('--d')) - (+b.style.getPropertyValue('--d')));
     const titleLines = $$('.caja__title-line');
+    const box = $('#cajaBox');
     if (!sec) return;
 
-    if (reduceMotion || !hasST) {
-      cells.forEach((c) => { c.style.transform = 'none'; c.style.opacity = '1'; });
+    if (reduceMotion || !hasST || isTouch) {
       if (lid) lid.style.display = 'none';
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        cells.forEach((c) => { c.style.transform = 'none'; c.style.opacity = '1'; });
+        return;
+      }
+      // light, non-pinned staggered reveal for touch (no janky pinned scrub)
+      sec.classList.add('caja--reveal');
+      cells.forEach((c) => { c.style.transitionDelay = (0.07 * (+c.style.getPropertyValue('--d'))) + 's'; });
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) {
+            if (box) box.classList.add('is-open');
+            cells.forEach((c) => c.classList.add('in'));
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.22 });
+      io.observe(sec);
       return;
     }
 
     gsap.set(cells, { scale: 0.6, y: 20, opacity: 0 });
     gsap.set(titleLines, { yPercent: 110, opacity: 0 });
 
-    const box = $('#cajaBox');
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sec,
