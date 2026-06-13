@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Chocolatería by Belate — Cacao, café y oficio · Cochabamba</title>
+  <meta name="description" content="Chocolatería, café de especialidad y pastelería artesanal en Cochabamba, Bolivia. Hecho a mano por Eliana y Lorena González. Una pausa que merece su propio ritual." />
+  <meta name="theme-color" content="#1C110B" />
+  <link rel="icon" href="assets/images/logo.jpg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="La Chocolatería by Belate" />
+  <meta property="og:description" content="Chocolate hecho para detener el tiempo. Cacao, café y oficio en Cochabamba." />
+  <meta property="og:image" content="assets/images/poster-v2.jpg" />
+  <meta property="og:locale" content="es_BO" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Hanken+Grotesk:wght@300;400;500;600&family=Martian+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css?v=6" />
+
+  <!-- Structured data: helps Google show hours, map, phone for the café -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "La Chocolatería by Belate",
+    "description": "Chocolatería, café de especialidad y pastelería artesanal en Cochabamba, Bolivia.",
+    "image": "https://lachocolateriabybelate.com/assets/images/poster-v2.jpg",
+    "servesCuisine": ["Chocolate", "Café", "Pastelería", "Postres"],
+    "telephone": "+591 78377793",
+    "email": "lachocolateriabybelate@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ciclovía, entre Av. Villarroel y Santa Cruz",
+      "addressLocality": "Cochabamba",
+      "addressCountry": "BO"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": -17.369332, "longitude": -66.158131 },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "15:30",
+      "closes": "21:30"
+    }],
+    "url": "https://www.instagram.com/lachocolateriabybelate/",
+    "sameAs": [
+      "https://www.instagram.com/lachocolateriabybelate/",
+      "https://www.facebook.com/LaChocolateriaByBelate/"
+    ]
+  }
+  </script>
+</head>
+<body data-scroll-container>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span><span class="cursor__label"></span></div>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <img class="preloader__logo" src="assets/images/logo.jpg" alt="La Chocolatería by Belate" />
+      <div class="preloader__line"><span class="preloader__line-fill"></span></div>
+      <div class="preloader__count"><span id="plCount">0</span><span class="preloader__pct">%</span></div>
+    </div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand" data-cursor="Inicio" aria-label="La Chocolatería by Belate — inicio">
+      <span class="nav__brand-main">La&nbsp;Chocolatería</span>
+      <span class="nav__brand-sub">by&nbsp;Belate</span>
+    </a>
+    <div class="nav__right">
+      <a href="https://www.instagram.com/lachocolateriabybelate/" target="_blank" rel="noopener" class="nav__ig" data-cursor="Seguir">@lachocolateriabybelate</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="overlay">
+        <span class="menu-toggle__label" data-open="Menú" data-close="Cerrar">Menú</span>
+        <span class="menu-toggle__icon"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ FULLSCREEN MENU OVERLAY ============ -->
+  <nav class="overlay" id="overlay" aria-hidden="true">
+    <div class="overlay__bg" aria-hidden="true"></div>
+    <div class="overlay__grid">
+      <ul class="overlay__links">
+        <li><a href="#hero" data-num="01"><span>Inicio</span></a></li>
+        <li><a href="#manifesto" data-num="02"><span>La experiencia</span></a></li>
+        <li><a href="#especialidades" data-num="03"><span>Especialidades</span></a></li>
+        <li><a href="#tortas" data-num="04"><span>Tortas</span></a></li>
+        <li><a href="#catering" data-num="05"><span>Catering</span></a></li>
+        <li><a href="#visita" data-num="06"><span>Visítanos</span></a></li>
+        <li><a href="https://www.instagram.com/lachocolateriabybelate/" target="_blank" rel="noopener" data-num="07"><span>Instagram</span></a></li>
+      </ul>
+      <div class="overlay__aside">
+        <p class="overlay__eyebrow">Encuéntranos</p>
+        <p class="overlay__addr">Ciclovía, entre Av. Villarroel<br/>y Santa Cruz<br/>Cochabamba · Bolivia</p>
+        <p class="overlay__eyebrow">Reservas &amp; pedidos</p>
+        <a class="overlay__contact" href="tel:+59178377793">+591 78377793</a>
+        <a class="overlay__contact" href="mailto:lachocolateriabybelate@gmail.com">lachocolateriabybelate@gmail.com</a>
+        <p class="overlay__hours">Martes a Domingo · 15:30 – 21:30<br/>Lunes cerrado</p>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <figure class="hero__media media" data-media="hero">
+        <video class="media__video" autoplay muted loop playsinline preload="auto" poster="assets/images/poster-v2.jpg">
+          <source src="assets/video/v2.mp4" type="video/mp4" />
+        </video>
+        <figcaption class="media__ph"><span>v2.mp4</span></figcaption>
+      </figure>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow line-mask"><span>Cochabamba · Bolivia — Cacao, café y oficio</span></p>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="word">Chocolate</span></span>
+          <span class="hero__line"><span class="word">hecho para</span></span>
+          <span class="hero__line hero__line--accent"><span class="word">detener</span> <span class="word">el tiempo</span></span>
+        </h1>
+        <p class="hero__sub line-mask"><span>Una pausa que merece su propio ritual. Hecha a mano por Eliana &amp; Lorena.</span></p>
+      </div>
+
+      <a href="#manifesto" class="hero__scroll" data-cursor="Bajar" aria-label="Desplázate para descubrir">
+        <span>Desliza</span>
+        <span class="hero__scroll-line"><i></i></span>
+      </a>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Cacao</span><span class="dot">•</span><span>Café de especialidad</span><span class="dot">•</span><span>Pastelería</span><span class="dot">•</span><span>Tortas</span><span class="dot">•</span><span>Chocolate caliente</span><span class="dot">•</span><span>Catering</span><span class="dot">•</span>
+          <span>Cacao</span><span class="dot">•</span><span>Café de especialidad</span><span class="dot">•</span><span>Pastelería</span><span class="dot">•</span><span>Tortas</span><span class="dot">•</span><span>Chocolate caliente</span><span class="dot">•</span><span>Catering</span><span class="dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto" id="manifesto">
+      <p class="section-index"><span>01</span> — La experiencia</p>
+      <h2 class="manifesto__text reveal-words">
+        Nacimos del cacao y de las manos de dos hermanas. Cada chocolate, cada café y cada postre
+        se hace despacio, con la calidez de lo artesanal y la precisión de la buena pastelería.
+      </h2>
+      <div class="manifesto__foot">
+        <div class="manifesto__sig">
+          <span class="manifesto__sig-name">Eliana &amp; Lorena González</span>
+          <span class="manifesto__sig-role">Fundadoras · La Chocolatería by Belate</span>
+        </div>
+        <p class="manifesto__note">
+          Dulzura y calidez, servidas en cada detalle. Una chocolatería de barrio
+          pensada como un pequeño atelier del cacao en el corazón de Cochabamba.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ ESPECIALIDADES (horizontal scroll) ============ -->
+    <section class="especialidades" id="especialidades">
+      <div class="esp__pin">
+        <div class="esp__head">
+          <p class="section-index light"><span>02</span> — Especialidades</p>
+          <p class="esp__hint" aria-hidden="true">Desliza →</p>
+        </div>
+        <div class="esp__track" id="espTrack">
+
+          <article class="esp__panel">
+            <span class="esp__count">01</span>
+            <figure class="esp__media media" data-media="esp-cacao">
+              <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v5.jpg">
+                <source src="assets/video/v5.mp4" type="video/mp4" />
+              </video>
+              <figcaption class="media__ph"><span>v5.mp4</span></figcaption>
+            </figure>
+            <div class="esp__caption">
+              <h3 class="esp__name">Cacao</h3>
+              <p>Del fruto al chocolate. Cacao seleccionado: el origen de todo lo que hacemos.</p>
+            </div>
+          </article>
+
+          <article class="esp__panel">
+            <span class="esp__count">02</span>
+            <figure class="esp__media media" data-media="esp-cafe">
+              <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v1.jpg">
+                <source src="assets/video/v1.mp4" type="video/mp4" />
+              </video>
+              <figcaption class="media__ph"><span>v1.mp4</span></figcaption>
+            </figure>
+            <div class="esp__caption">
+              <h3 class="esp__name">Café</h3>
+              <p>Para trabajar, conversar o descansar. El acompañante perfecto para detener el tiempo.</p>
+            </div>
+          </article>
+
+          <article class="esp__panel">
+            <span class="esp__count">03</span>
+            <figure class="esp__media media" data-media="esp-pasteleria">
+              <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v4.jpg">
+                <source src="assets/video/v4.mp4" type="video/mp4" />
+              </video>
+              <figcaption class="media__ph"><span>v4.mp4</span></figcaption>
+            </figure>
+            <div class="esp__caption">
+              <h3 class="esp__name">Pastelería</h3>
+              <p>Choux, capas y cremas. Postres hechos a mano como pequeñas piezas de repostería fina.</p>
+            </div>
+          </article>
+
+          <article class="esp__panel">
+            <span class="esp__count">04</span>
+            <figure class="esp__media media" data-media="esp-chocolate">
+              <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v6.jpg">
+                <source src="assets/video/v6.mp4" type="video/mp4" />
+              </video>
+              <figcaption class="media__ph"><span>v6.mp4</span></figcaption>
+            </figure>
+            <div class="esp__caption">
+              <h3 class="esp__name">Chocolate&nbsp;caliente</h3>
+              <p>Espeso, intenso, para mojar. El clásico que nos dio el nombre.</p>
+            </div>
+          </article>
+
+          <article class="esp__panel">
+            <span class="esp__count">05</span>
+            <figure class="esp__media media" data-media="esp-fresas">
+              <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v8.jpg">
+                <source src="assets/video/v8.mp4" type="video/mp4" />
+              </video>
+              <figcaption class="media__ph"><span>v8.mp4</span></figcaption>
+            </figure>
+            <div class="esp__caption">
+              <h3 class="esp__name">Fresas con chocolate</h3>
+              <p>Fresas frescas bañadas en chocolate y un hilo de chocolate blanco. Puro antojo.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ "LA CAJA" — SIGNATURE INTERACTION ============ -->
+    <section class="caja" id="caja" aria-label="Ábrela como una caja de chocolates">
+      <div class="caja__pin">
+        <div class="caja__intro">
+          <p class="section-index light"><span>03</span> — La caja</p>
+          <h2 class="caja__title">
+            <span class="caja__title-line">Ábrela como</span>
+            <span class="caja__title-line caja__title-line--it">se abre una caja</span>
+            <span class="caja__title-line">de chocolates</span>
+          </h2>
+        </div>
+
+        <div class="caja__box" id="cajaBox">
+          <div class="caja__lid" id="cajaLid">
+            <span class="caja__lid-foil"></span>
+            <span class="caja__lid-text">La Chocolatería · by Belate</span>
+          </div>
+          <div class="caja__grid">
+            <figure class="cell media" data-media="cell-1" style="--d:1"><img src="assets/images/poster-v5.jpg" alt="Cacao de origen" loading="lazy" /><figcaption class="media__ph"><span>cacao</span></figcaption><span class="cell__name">Cacao de origen</span></figure>
+            <figure class="cell media" data-media="cell-2" style="--d:4"><img src="assets/images/poster-v2.jpg" alt="Ganache de la casa" loading="lazy" /><figcaption class="media__ph"><span>ganache</span></figcaption><span class="cell__name">Ganache de la casa</span></figure>
+            <figure class="cell media" data-media="cell-3" style="--d:2"><img src="assets/images/poster-v4.jpg" alt="Choux artesanal" loading="lazy" /><figcaption class="media__ph"><span>choux</span></figcaption><span class="cell__name">Choux artesanal</span></figure>
+            <figure class="cell media" data-media="cell-4" style="--d:5"><img src="assets/images/poster-v6.jpg" alt="Chocolate caliente" loading="lazy" /><figcaption class="media__ph"><span>chocolate</span></figcaption><span class="cell__name">Chocolate caliente</span></figure>
+            <figure class="cell media" data-media="cell-5" style="--d:3"><img src="assets/images/poster-v3.jpg" alt="Torta red velvet" loading="lazy" /><figcaption class="media__ph"><span>red velvet</span></figcaption><span class="cell__name">Red velvet</span></figure>
+            <figure class="cell media" data-media="cell-6" style="--d:6"><img src="assets/images/poster-v1.jpg" alt="Café del día" loading="lazy" /><figcaption class="media__ph"><span>café</span></figcaption><span class="cell__name">Café del día</span></figure>
+          </div>
+        </div>
+
+        <p class="caja__foot">Una pequeña selección de lo que servimos cada día.</p>
+      </div>
+    </section>
+
+    <!-- ============ TORTAS ============ -->
+    <section class="tortas" id="tortas">
+      <div class="tortas__media-wrap">
+        <figure class="tortas__media media" data-media="tortas">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v7.jpg">
+            <source src="assets/video/v7.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="media__ph"><span>v7.mp4</span></figcaption>
+        </figure>
+      </div>
+      <div class="tortas__content">
+        <p class="section-index"><span>04</span> — Tortas</p>
+        <h2 class="tortas__title">Pastelería<br/>para celebrar</h2>
+        <p class="tortas__lead">
+          Tortas personalizadas para cumpleaños, bodas y momentos que merecen recordarse.
+          Diseñamos cada pieza contigo: sabor, altura y decoración hechos a mano.
+        </p>
+        <ul class="tortas__list">
+          <li>Diseños personalizados</li>
+          <li>Sabores de la casa <span class="ph">[CONFIRMAR SABORES]</span></li>
+          <li>Encargos con anticipación</li>
+        </ul>
+        <a class="btn btn--solid magnetic" href="https://wa.me/59178377793?text=Hola%20La%20Chocolater%C3%ADa%2C%20quiero%20encargar%20una%20torta" target="_blank" rel="noopener" data-cursor="WhatsApp">
+          <span>Encarga tu torta</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ CATERING ============ -->
+    <section class="catering" id="catering">
+      <div class="catering__inner">
+        <div class="catering__head">
+          <p class="section-index light"><span>05</span> — Catering</p>
+          <h2 class="catering__title">Llevamos el ritual<br/>a tu evento</h2>
+        </div>
+        <div class="catering__body">
+          <p class="catering__lead">
+            Mesas de chocolate, café de especialidad y pastelería para eventos privados y corporativos.
+            Presentación cuidada, sabor de autor y el oficio de siempre — fuera de la cafetería.
+          </p>
+          <div class="catering__cols">
+            <div><span class="num">a</span><p>Mesas dulces &amp; estaciones de chocolate</p></div>
+            <div><span class="num">b</span><p>Barra de café de especialidad</p></div>
+            <div><span class="num">c</span><p>Eventos a medida</p></div>
+          </div>
+          <a class="btn btn--line magnetic" href="https://wa.me/59178377793?text=Hola%2C%20me%20interesa%20catering%20para%20un%20evento" target="_blank" rel="noopener" data-cursor="Consultar">
+            <span>Consultar catering</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </a>
+        </div>
+      </div>
+      <figure class="catering__media media" data-media="catering">
+        <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v3.jpg">
+          <source src="assets/video/v3.mp4" type="video/mp4" />
+        </video>
+        <figcaption class="media__ph"><span>v3.mp4</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ INSTAGRAM MOMENTS ============ -->
+    <section class="ig" id="instagram">
+      <div class="ig__head">
+        <p class="section-index"><span>06</span> — Instagram</p>
+        <h2 class="ig__title">Momentos<br/>recientes</h2>
+        <a class="ig__cta magnetic" href="https://www.instagram.com/lachocolateriabybelate/" target="_blank" rel="noopener" data-cursor="Abrir">
+          @lachocolateriabybelate
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+      <div class="ig__collage">
+        <figure class="ig__item ig__item--a media" data-media="ig-1">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-interior.jpg"><source src="assets/video/interior.mp4" type="video/mp4" /></video>
+          <figcaption class="media__ph"><span>interior.mp4</span></figcaption>
+        </figure>
+        <figure class="ig__item ig__item--b media" data-media="ig-2">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v1.jpg"><source src="assets/video/v1.mp4" type="video/mp4" /></video>
+          <figcaption class="media__ph"><span>v1.mp4</span></figcaption>
+        </figure>
+        <figure class="ig__item ig__item--c media" data-media="ig-3">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v6.jpg"><source src="assets/video/v6.mp4" type="video/mp4" /></video>
+          <figcaption class="media__ph"><span>v6.mp4</span></figcaption>
+        </figure>
+        <figure class="ig__item ig__item--d media" data-media="ig-4">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v4.jpg"><source src="assets/video/v4.mp4" type="video/mp4" /></video>
+          <figcaption class="media__ph"><span>v4.mp4</span></figcaption>
+        </figure>
+        <figure class="ig__item ig__item--e media" data-media="ig-5">
+          <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-v3.jpg"><source src="assets/video/v3.mp4" type="video/mp4" /></video>
+          <figcaption class="media__ph"><span>v3.mp4</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ VISÍTANOS ============ -->
+    <section class="visita" id="visita">
+      <div class="visita__inner">
+        <div class="visita__head">
+          <p class="section-index light"><span>07</span> — Visítanos</p>
+          <h2 class="visita__title">Te esperamos<br/>con una taza lista</h2>
+        </div>
+        <div class="visita__grid">
+          <div class="visita__block">
+            <p class="visita__label">Dirección</p>
+            <p class="visita__val">Ciclovía, entre Av. Villarroel y Santa Cruz<br/>Cochabamba · Bolivia</p>
+            <a class="visita__link magnetic" href="https://www.google.com/maps/search/?api=1&query=La+Chocolateria+by+Belate+Cochabamba" target="_blank" rel="noopener" data-cursor="Ver mapa">Ver en mapa →</a>
+          </div>
+          <div class="visita__block">
+            <p class="visita__label">Horarios</p>
+            <p class="visita__val">Martes a Domingo<br/>15:30 – 21:30</p>
+            <p class="visita__val visita__small">Lunes cerrado</p>
+          </div>
+          <div class="visita__block">
+            <p class="visita__label">Pedidos &amp; contacto</p>
+            <a class="visita__val visita__link" href="tel:+59178377793">+591 78377793</a>
+            <a class="visita__val visita__link" href="mailto:lachocolateriabybelate@gmail.com">lachocolateriabybelate@gmail.com</a>
+            <p class="visita__val visita__small">Dine-in · Para llevar · Delivery</p>
+          </div>
+          <div class="visita__block visita__block--cta">
+            <a class="btn btn--solid magnetic" href="https://wa.me/59178377793?text=Hola%20La%20Chocolater%C3%ADa%20by%20Belate" target="_blank" rel="noopener" data-cursor="WhatsApp">
+              <span>Escríbenos por WhatsApp</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </a>
+            <p class="visita__note ph">[CONFIRMAR NÚMERO DE WHATSAPP]</p>
+          </div>
+        </div>
+        <div class="visita__place">
+          <figure class="visita__storefront media" data-media="local">
+            <video class="media__video" muted loop playsinline preload="none" data-lazy poster="assets/images/poster-local.jpg">
+              <source src="assets/video/local.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="media__ph"><span>local.mp4</span></figcaption>
+            <span class="visita__storefront-tag">Nuestra casa</span>
+          </figure>
+          <figure class="visita__map">
+            <iframe
+              src="https://maps.google.com/maps?q=-17.369332,-66.158131&z=16&hl=es&output=embed"
+              title="Mapa — La Chocolatería by Belate, Cochabamba"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <a class="visita__map-link" href="https://www.google.com/maps/search/?api=1&query=-17.369332,-66.158131" target="_blank" rel="noopener" data-cursor="Abrir">Abrir en Google Maps ↗</a>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="footer__top">
+      <span class="footer__badge"><img src="assets/images/logo.jpg" alt="La Chocolatería by Belate" /></span>
+      <p class="footer__eyebrow">Cochabamba · Bolivia</p>
+      <a href="#hero" class="footer__wordmark" data-cursor="Arriba">Chocolate<br/>hecho para<br/><em>detener el tiempo</em></a>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <p class="footer__label">Encuéntranos</p>
+        <p>Ciclovía, entre Av. Villarroel y Santa Cruz<br/>Cochabamba · Bolivia</p>
+      </div>
+      <div>
+        <p class="footer__label">Contacto</p>
+        <a href="tel:+59178377793">+591 78377793</a><br/>
+        <a href="mailto:lachocolateriabybelate@gmail.com">lachocolateriabybelate@gmail.com</a>
+      </div>
+      <div>
+        <p class="footer__label">Síguenos</p>
+        <a href="https://www.instagram.com/lachocolateriabybelate/" target="_blank" rel="noopener">Instagram ↗</a><br/>
+        <a href="https://www.facebook.com/LaChocolateriaByBelate/" target="_blank" rel="noopener">Facebook ↗</a>
+      </div>
+    </div>
+    <div class="footer__base">
+      <p>© <span id="year">2026</span> La Chocolatería by Belate. Hecho con cacao en Cochabamba.</p>
+      <p class="footer__credit">Dulzura &amp; calidez</p>
+    </div>
+  </footer>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <script src="js/main.js?v=2" defer></script>
+</body>
+</html>
